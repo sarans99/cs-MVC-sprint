@@ -21,5 +21,12 @@ namespace cs_MVC_sprint.Controllers
             var authors = _authorService.GetAllAuthors();
             return Ok(authors);
         }
+
+        [HttpGet ("{id}")]
+        public IActionResult GetAuthorById(int id)
+        {
+            var author = _authorService.GetAuthorById(id);
+            return Ok(author);
+        }
     }
 }

@@ -8,13 +8,12 @@ namespace cs_MVC_sprint
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            builder.Services.AddScoped<IAuthorService, AuthorService>();
+            builder.Services.AddScoped<IAuthorModel, AuthorModel>();
+            builder.Services.AddScoped<Author>();
             builder.Services.AddControllers();
 
             var app = builder.Build();
-
-            builder.Services.AddScoped<AuthorService>();
-            builder.Services.AddScoped<Author>();
 
             app.UseRouting();
 
