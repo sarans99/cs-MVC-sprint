@@ -6,8 +6,9 @@ namespace cs_MVC_sprint.Models
     {
         List<Author> GetAllAuthors();
         Author GetAuthorById(int id);
-
         Author AddAuthor(Author author);
+        Author DeleteAuthorById(int id);
+
     }
     public class AuthorModel : IAuthorModel
     {
@@ -25,7 +26,7 @@ namespace cs_MVC_sprint.Models
             }).ToList();
 
         }
-        public Author GetAuthorById( int id)
+        public Author GetAuthorById(int id)
         {
             var filepath = "Resources/Authors.json";
             var json = File.ReadAllText(filepath);
@@ -46,6 +47,18 @@ namespace cs_MVC_sprint.Models
             authors.Add(author);
             var options = new JsonSerializerOptions { WriteIndented = true };
             File.WriteAllText(filepath, JsonSerializer.Serialize(authors, options));
+            return author;
+        }
+        public Author DeleteAuthorById(int id)
+        {
+            var filepath = "Resources/Authors.json";
+            var json = File.ReadAllText(filepath);
+            List<Author>? authors = JsonSerializer.Deserialize<List<Author>>(json);
+            Author? author = authors.FirstOrDefault(a => a.Id == id);
+            authors.Remove(author);
+            var options = new JsonSerializerOptions { WriteIndented = true };
+            File.WriteAllText(filepath, JsonSerializer.Serialize(authors, options));
+
             return author;
         }
     }

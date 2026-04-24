@@ -8,8 +8,8 @@ namespace cs_MVC_sprint.Services
     {
         List<Author> GetAllAuthors();
         Author GetAuthorById(int id);
-
         Author AddAuthor(Author author);
+        Author DeleteAuthorById(int id);
     }
     public class AuthorService : IAuthorService
     {
@@ -30,6 +30,11 @@ namespace cs_MVC_sprint.Services
         public Author AddAuthor(Author author)
         {
             return _authorModel.AddAuthor(author);
+        }
+
+        public Author DeleteAuthorById(int id)
+        {
+            return _authorModel.DeleteAuthorById(id);
         }
     }
 }

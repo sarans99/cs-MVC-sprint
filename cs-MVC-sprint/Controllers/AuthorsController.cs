@@ -35,5 +35,13 @@ namespace cs_MVC_sprint.Controllers
             var newAuthor = _authorService.AddAuthor(author);
             return CreatedAtAction(nameof(GetAllAuthors), new {Id = newAuthor.Id}, newAuthor);
         }
+
+        [HttpDelete("{id}")]
+
+        public IActionResult DeleteAuthorById(int id)
+        {
+            var deleteAuthor = _authorService.DeleteAuthorById(id);
+            return NoContent();
+        }
     }
 }
